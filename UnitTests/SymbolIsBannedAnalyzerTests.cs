@@ -930,7 +930,6 @@ class D : C { }
             var bannedText = @"T:BannedAttribute";
 
             await VerifyCSharpAnalyzerAsync(source, bannedText,
-                GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""),
                 GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""));
         }
 
@@ -952,7 +951,6 @@ class C
             var bannedText = @"T:BannedAttribute";
 
             await VerifyCSharpAnalyzerAsync(source, bannedText,
-                GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""),
                 GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""));
         }
 
@@ -971,7 +969,6 @@ class BannedAttribute : Attribute { }
             var bannedText = @"T:BannedAttribute";
 
             await VerifyCSharpAnalyzerAsync(source, bannedText,
-                GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""),
                 GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""));
         }
 
@@ -990,7 +987,6 @@ class BannedAttribute : Attribute { }
             var bannedText = @"T:BannedAttribute";
 
             await VerifyCSharpAnalyzerAsync(source, bannedText,
-                GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""),
                 GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute", ""));
         }
 
@@ -1061,13 +1057,11 @@ class C
             await VerifyCSharpAnalyzerAsync(
                 source,
                 bannedText1,
-                GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute.BannedAttribute()", ""),
                 GetCSharpResultAt(0, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute.BannedAttribute()", ""));
 
             await VerifyCSharpAnalyzerAsync(
                 source,
                 bannedText2,
-                GetCSharpResultAt(1, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute.BannedAttribute(int)", ""),
                 GetCSharpResultAt(1, SymbolIsBannedAnalyzer.SymbolIsBannedRule, "BannedAttribute.BannedAttribute(int)", ""));
         }
 

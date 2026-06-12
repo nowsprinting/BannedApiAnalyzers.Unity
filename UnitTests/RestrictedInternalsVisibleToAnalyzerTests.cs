@@ -575,21 +575,21 @@ namespace N1
 }";
 
             var apiConsumerSource = @"
-[{|#16:{|#0:N1.C1|}(typeof({|#1:N1.C1|}))|}]
+[{|#0:N1.C1|}(typeof({|#1:N1.C1|}))]
 class C2
 {
-    [{|#17:{|#2:N1.C1|}(typeof({|#3:N1.C1|}))|}]
+    [{|#2:N1.C1|}(typeof({|#3:N1.C1|}))]
     private readonly int field;
 
-    [{|#18:{|#4:N1.C1|}(typeof({|#5:N1.C1|}))|}]
-    private int Property { [{|#19:{|#6:N1.C1|}(typeof({|#7:N1.C1|}))|}] get; }
+    [{|#4:N1.C1|}(typeof({|#5:N1.C1|}))]
+    private int Property { [{|#6:N1.C1|}(typeof({|#7:N1.C1|}))] get; }
 
-    [{|#20:{|#8:N1.C1|}(typeof({|#9:N1.C1|}))|}]
+    [{|#8:N1.C1|}(typeof({|#9:N1.C1|}))]
     private event System.EventHandler X;
 
-    [{|#21:{|#10:N1.C1|}(typeof({|#11:N1.C1|}))|}]
-    [return: {|#22:{|#12:N1.C1|}(typeof({|#13:N1.C1|}))|}]
-    int M([{|#23:{|#14:N1.C1|}(typeof({|#15:N1.C1|}))|}]object c)
+    [{|#10:N1.C1|}(typeof({|#11:N1.C1|}))]
+    [return: {|#12:N1.C1|}(typeof({|#13:N1.C1|}))]
+    int M([{|#14:N1.C1|}(typeof({|#15:N1.C1|}))]object c)
     {
         return 0;
     }
@@ -611,15 +611,7 @@ class C2
                 GetCSharpResultAt(12, "N1.C1", "N2"),
                 GetCSharpResultAt(13, "N1.C1", "N2"),
                 GetCSharpResultAt(14, "N1.C1", "N2"),
-                GetCSharpResultAt(15, "N1.C1", "N2"),
-                GetCSharpResultAt(16, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(17, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(18, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(19, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(20, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(21, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(22, "N1.C1.C1", "N2"),
-                GetCSharpResultAt(23, "N1.C1.C1", "N2")
+                GetCSharpResultAt(15, "N1.C1", "N2")
                 );
         }
 

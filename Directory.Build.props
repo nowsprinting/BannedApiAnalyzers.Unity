@@ -1,6 +1,20 @@
 <Project>
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
   <PropertyGroup>
-    <ExcludeFromSourceOnlyBuild>true</ExcludeFromSourceOnlyBuild>
+    <!-- Pin the Roslyn API surface for the analyzer and the projitems #if gates.
+         MicrosoftCodeAnalysisVersionForBannedApiAnalyzers is what the Core csproj reads into
+         the local MicrosoftCodeAnalysisVersion before the projitems is imported.
+         Do NOT add a GetPathOfFileAbove import: this is a standalone repo. -->
+    <MicrosoftCodeAnalysisVersion>3.8.0</MicrosoftCodeAnalysisVersion>
+    <MicrosoftCodeAnalysisVersionForBannedApiAnalyzers>3.8.0</MicrosoftCodeAnalysisVersionForBannedApiAnalyzers>
+    <MicrosoftCodeAnalysisVersionForTests>3.8.0</MicrosoftCodeAnalysisVersionForTests>
+    <!-- UnitTests project uses $(NetCurrent) for TargetFramework.
+         Set to net10.0 to match the installed runtime on this machine. -->
+    <NetCurrent>net10.0</NetCurrent>
+    <!-- netstandard2.0 defaults to LangVersion 7.3 which would reject switch expressions,
+         target-typed new(), and nullable reference types used in the v3.11.0 source. -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 </Project>

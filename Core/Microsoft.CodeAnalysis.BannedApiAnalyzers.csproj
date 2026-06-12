@@ -10,12 +10,13 @@
     <MicrosoftCodeAnalysisVersion>$(MicrosoftCodeAnalysisVersionForBannedApiAnalyzers)</MicrosoftCodeAnalysisVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Roslyn.Diagnostics.Analyzers\Core\RoslynDiagnosticIds.cs" Link="RoslynDiagnosticIds.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <!-- RoslynDiagnosticIds.cs was originally from ..\..\Roslyn.Diagnostics.Analyzers\Core\ (outside repo).
+         It is now vendored directly in Core/ and picked up by the SDK's default Compile glob. -->
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers" />
-    <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.BannedApiAnalyzers" />
+    <!-- VisualBasic project is excluded from this Unity-targeted standalone build. -->
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.BannedApiAnalyzers.UnitTests" />
   </ItemGroup>
-  <Import Project="..\..\Utilities\Compiler\Analyzer.Utilities.projitems" Label="Shared" />
+  <!-- Original: ..\..\Utilities\Compiler\Analyzer.Utilities.projitems (sibling in roslyn-analyzers monorepo).
+       Vendored under Utilities/Compiler/ for standalone build. -->
+  <Import Project="..\Utilities\Compiler\Analyzer.Utilities.projitems" Label="Shared" />
 </Project>

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/Microsoft.CodeAnalysis.BannedApiAnalyzers.csproj" />
+  </Folder>
+  <Folder Name="/CSharp/">
+    <Project Path="CSharp/Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers.csproj" />
+  </Folder>
+  <Folder Name="/UnitTests/">
+    <Project Path="UnitTests/Microsoft.CodeAnalysis.BannedApiAnalyzers.UnitTests.csproj" />
+  </Folder>
+</Solution>

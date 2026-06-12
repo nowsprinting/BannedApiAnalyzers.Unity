@@ -6,6 +6,15 @@
     <PackageId>BannedApiAnalyzers.Unity</PackageId>
     <Version>1.0.0</Version>
     <MicrosoftCodeAnalysisVersion>$(MicrosoftCodeAnalysisVersionForBannedApiAnalyzers)</MicrosoftCodeAnalysisVersion>
+    <!-- Prevents the package from being added as a compile-time reference -->
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <!-- Analyzers are loaded by the host; their transitive deps (Microsoft.CodeAnalysis.*) are already present -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <!-- Roslyn analyzer DLLs must go to analyzers/dotnet/cs/ (no TFM subfolder).
+         BuildOutputTargetFolder would add a netstandard2.0/ subfolder, so we use IncludeBuildOutput=false
+         and include both DLLs manually via None items below. -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
     <!-- RoslynDiagnosticIds.cs was originally from ..\..\Roslyn.Diagnostics.Analyzers\Core\ (outside repo).
@@ -13,6 +22,17 @@
     <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.CSharp" />
     <!-- VisualBasic project is excluded from this Unity-targeted standalone build. -->
     <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Both analyzer DLLs go directly under analyzers/dotnet/cs/ (no TFM subfolder) -->
+    <None Include="$(OutputPath)$(AssemblyName).dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs/"
+          Visible="false" />
+    <None Include="..\CSharp\bin\$(Configuration)\netstandard2.0\BannedApiAnalyzers.Unity.CSharp.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs/"
+          Visible="false" />
   </ItemGroup>
   <!-- Original: ..\..\Utilities\Compiler\Analyzer.Utilities.projitems (sibling in roslyn-analyzers monorepo).
        Vendored under Utilities/Compiler/ for standalone build. -->

@@ -6,6 +6,8 @@
     <PackageId>BannedApiAnalyzers.Unity.CSharp</PackageId>
     <Version>1.0.0</Version>
     <MicrosoftCodeAnalysisVersion>$(MicrosoftCodeAnalysisVersionForBannedApiAnalyzers)</MicrosoftCodeAnalysisVersion>
+    <!-- Bundled into BannedApiAnalyzers.Unity package; not packed standalone -->
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(MicrosoftCodeAnalysisVersion)" />

@@ -17,6 +17,17 @@ Place the following two DLLs in your Unity project with the `RoslynAnalyzer` lab
 - `Core/bin/Release/netstandard2.0/BannedApiAnalyzers.Unity.dll`
 - `CSharp/bin/Release/netstandard2.0/BannedApiAnalyzers.Unity.CSharp.dll`
 
+### NuGet Package
+
+```bash
+dotnet build -c Release BannedApiAnalyzers.Unity.slnx   # build CSharp DLL first
+dotnet pack Core/BannedApiAnalyzers.Unity.csproj -c Release
+```
+
+Output: `Core/bin/Release/BannedApiAnalyzers.Unity.1.0.0.nupkg`
+
+The package places both DLLs under `analyzers/dotnet/cs/` (no `lib/` entry, no declared dependencies) as required for Roslyn analyzer packages. `CSharp.csproj` has `IsPackable=false` and is bundled into this single package.
+
 ## Repository Structure
 
 - Core/                                 # analyzer core (netstandard2.0)

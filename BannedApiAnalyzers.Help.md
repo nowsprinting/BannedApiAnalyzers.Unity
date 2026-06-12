@@ -1,7 +1,7 @@
 # How to use BannedApiAnalyzers.Unity
 
-BannedApiAnalyzers.Unity (a Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers))
-uses [additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html)
+BannedApiAnalyzers.Unity is a Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers)
+uses [Unity additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html)
 instead of `BannedSymbols.txt` configuration files.
 
 Create one or more files named according to the pattern `<Filename>.BannedApiAnalyzers.Unity.additionalfile`
@@ -10,7 +10,7 @@ Create one or more files named according to the pattern `<Filename>.BannedApiAna
 - `BannedSymbols.BannedApiAnalyzers.Unity.additionalfile`
 - `Platform.BannedApiAnalyzers.Unity.additionalfile` (one file per concern)
 
-Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — no `.csproj` edits required.
+Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — **no `.csproj` edits required**.
 
 For more details on Unity's additional files feature, see
 [Additional files for Roslyn analyzers and source generators](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html).

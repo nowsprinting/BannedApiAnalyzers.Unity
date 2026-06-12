@@ -51,23 +51,26 @@ The list of banned symbols contains a duplicate.
 
 ## Usage
 
-### 1. Add the analyzer DLLs to your Unity project
+### 1. Install the analyzer package
 
-Place both DLLs under `Assets/` (or a subdirectory):
+Install BannedApiAnalyzers.Unity from a package registry using either NuGetForUnity or UnityNuGet.
 
-- `BannedApiAnalyzers.Unity.dll`
-- `BannedApiAnalyzers.Unity.CSharp.dll`
+#### [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity)
 
-In the Inspector, configure each DLL:
+1. Open the NuGetForUnity window via **NuGet > Manage NuGet Packages**
+2. Search "BannedApiAnalyzers.Unity" and click **Install**
 
-1. Turn off all of **Select platforms for plugin** toggles
-2. Assign the `RoslynAnalyzer` label
+#### [OpenUPM](https://openupm.com/) (UnityNuGet)
+
+1. Install the package:
+
+   ```bash
+   openupm add org.nuget.BannedApiAnalyzers.Unity
+   ```
+
+2. Open the `.asmdef` of each assembly you want the analyzer to apply to, and add `BannedApiAnalyzers.Unity` to its **Assembly Definition References**.
 
 ### 2. Create a banned symbols additional file
-
-BannedApiAnalyzers.Unity (a Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers))
-uses [additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html)
-instead of `BannedSymbols.txt` configuration files.
 
 Create one or more files named according to the pattern `<Filename>.BannedApiAnalyzers.Unity.additionalfile`
 (the `<Filename>` part must not contain a period) and place them anywhere under `Assets/`:
@@ -75,7 +78,7 @@ Create one or more files named according to the pattern `<Filename>.BannedApiAna
 - `BannedSymbols.BannedApiAnalyzers.Unity.additionalfile`
 - `Platform.BannedApiAnalyzers.Unity.additionalfile` (one file per concern)
 
-Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — no `.csproj` edits required.
+Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — **no `.csproj` edits required**.
 
 For more details on Unity's additional files feature, see
 [Additional files for Roslyn analyzers and source generators](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html).

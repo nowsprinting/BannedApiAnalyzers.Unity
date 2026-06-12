@@ -18,7 +18,7 @@ namespace BannedApiAnalyzers.Unity.Tests
 
     public class SymbolIsBannedAnalyzerTests
     {
-        private const string BannedSymbolsFileName = "BannedSymbols.txt";
+        private const string BannedSymbolsFileName = "BannedSymbols.BannedApiAnalyzers.Unity.additionalfile";
 
         private static DiagnosticResult GetCSharpResultAt(int markupKey, DiagnosticDescriptor descriptor, string bannedMemberName, string message)
             => VerifyCS.Diagnostic(descriptor)
@@ -127,8 +127,8 @@ namespace BannedApiAnalyzers.Unity.Tests
                     Sources = { @"" },
                     AdditionalFiles =
                     {
-                        ("BannedSymbols.txt", @"{|#0:T:System.Console|}") ,
-                        ("BannedSymbols.Other.txt", @"{|#1:T:System.Console|}")
+                        ("BannedSymbols.BannedApiAnalyzers.Unity.additionalfile", @"{|#1:T:System.Console|}") ,
+                        ("Other.BannedApiAnalyzers.Unity.additionalfile", @"{|#0:T:System.Console|}")
                     },
                 },
                 ExpectedDiagnostics =
@@ -143,7 +143,7 @@ namespace BannedApiAnalyzers.Unity.Tests
             await test.RunAsync();
         }
 
-        #region Comments in BannedSymbols.txt tests
+        #region Comments in banned symbols files tests
 
         [Fact]
         public async Task DiagnosticReportedForDuplicateBannedApiLinesWithCommentsAsync()
@@ -170,8 +170,8 @@ namespace BannedApiAnalyzers.Unity.Tests
                     Sources = { @"" },
                     AdditionalFiles =
                     {
-                        ("BannedSymbols.txt", @"{|#0:T:System.Console|} //ignore this") ,
-                        ("BannedSymbols.Other.txt", @"{|#1:T:System.Console|} //comment will not affect result")
+                        ("BannedSymbols.BannedApiAnalyzers.Unity.additionalfile", @"{|#1:T:System.Console|} //ignore this") ,
+                        ("Other.BannedApiAnalyzers.Unity.additionalfile", @"{|#0:T:System.Console|} //comment will not affect result")
                     },
                 },
                 ExpectedDiagnostics =
@@ -361,7 +361,7 @@ namespace N
 
         }
 
-        #endregion Comments in BannedSymbols.txt tests
+        #endregion Comments in banned symbols files tests
 
         [Fact]
         public async Task CSharp_BannedApiFile_MessageIncludedInDiagnosticAsync()
@@ -475,9 +475,9 @@ namespace N
                     Sources = { source },
                     AdditionalFiles =
                     {
-                        ("BannedSymbols.txt", @"T:N.BannedA") ,
-                        ("BannedSymbols.Other.txt", @"T:N.BannedB"),
-                        ("OtherFile.txt", @"T:N.NotBanned")
+                        ("BannedSymbols.BannedApiAnalyzers.Unity.additionalfile", @"T:N.BannedA") ,
+                        ("Other.BannedApiAnalyzers.Unity.additionalfile", @"T:N.BannedB"),
+                        ("NotBanned.SomeAnalyzer.additionalfile", @"T:N.NotBanned")
                     },
                 },
                 ExpectedDiagnostics =

@@ -1,22 +1,21 @@
 # How to use BannedApiAnalyzers.Unity
 
-The following file or files have to be added to any project referencing this package to enable analysis:
+BannedApiAnalyzers.Unity (a Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers))
+uses [additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html)
+instead of `BannedSymbols.txt` configuration files.
 
-- BannedSymbols.txt
-- BannedSymbols.\*.txt
+Create one or more files named according to the pattern `<Filename>.BannedApiAnalyzers.Unity.additionalfile`
+(the `<Filename>` part must not contain a period) and place them anywhere under `Assets/`:
 
-This can be done by:
+- `BannedSymbols.BannedApiAnalyzers.Unity.additionalfile`
+- `Platform.BannedApiAnalyzers.Unity.additionalfile` (one file per concern)
 
-- In Visual Studio, right click project in Solution Explorer, and choose "Add -> New Items", then select "Text File" in "Add new item" dialog.
-- Or, create the file at the location you desire, then add the following text to your project/target file (replace file path with its actual location):
+Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — no `.csproj` edits required.
 
-  ```xml
-  <ItemGroup>
-    <AdditionalFiles Include="BannedSymbols.txt" />
-  </ItemGroup>
-  ```
+For more details on Unity's additional files feature, see
+[Additional files for Roslyn analyzers and source generators](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html).
 
-To add a symbol to the banned list, just add an entry in the format below to one of the configuration files (Description Text will be displayed as description in diagnostics, which is optional):
+To add a symbol to the banned list, just add an entry in the format below to one of the additional files (Description Text will be displayed as description in diagnostics, which is optional):
 
 ```txt
 {Documentation Comment ID string for the symbol}[;Description Text]
@@ -26,7 +25,7 @@ Comments can be indicated with `//`, in the same way that they work in C#.
 
 For details on ID string format, please refer to ["ID string format"](https://github.com/dotnet/csharpstandard/blob/standard-v6/standard/documentation-comments.md#d42-id-string-format).
 
-Examples of BannedSymbols.txt entries for symbols declared in the source below:
+Examples of banned symbols entries for symbols declared in the source below:
 
 ```cs
 namespace N
@@ -34,29 +33,20 @@ namespace N
     class BannedType
     {
         public BannedType() {}
-
         public int BannedMethod() {}
-
         public void BannedMethod(int i) {}
-
         public void BannedMethod<T>(T t) {}
-
         public void BannedMethod<T>(Func<T> f) {}
-
         public string BannedField;
-
         public string BannedProperty { get; }
-
         public event EventHandler BannedEvent;
     }
 
-    class BannedType<T>
-    {
-    }
+    class BannedType<T> { }
 }
 ```
 
-| Symbol in Source                      | Sample Entry in BannedSymbols.txt
+| Symbol in Source                      | Sample Entry in *.BannedApiAnalyzers.Unity.additionalfile
 | -----------                           | -----------
 | `class BannedType`                    | `T:N.BannedType;Don't use BannedType`
 | `class BannedType<T>`                 | ``T:N.BannedType`1;Don't use BannedType<T>``

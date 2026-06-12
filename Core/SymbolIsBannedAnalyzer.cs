@@ -58,7 +58,7 @@ namespace BannedApiAnalyzers.Unity
             var query =
                 from additionalFile in compilationContext.Options.AdditionalFiles
                 let fileName = Path.GetFileName(additionalFile.Path)
-                where fileName != null && fileName.StartsWith("BannedSymbols.", StringComparison.Ordinal) && fileName.EndsWith(".txt", StringComparison.Ordinal)
+                where fileName != null && fileName.EndsWith(".BannedApiAnalyzers.Unity.additionalfile", StringComparison.Ordinal)
                 orderby additionalFile.Path // Additional files are sorted by DocumentId (which is a GUID), make the file order deterministic
                 let sourceText = additionalFile.GetText(compilationContext.CancellationToken)
                 where sourceText != null

@@ -1,6 +1,9 @@
 # BannedApiAnalyzers.Unity
 
-A Roslyn analyzer that detects usages of banned APIs, forked from [dotnet/roslyn-analyzers v3.11.0](https://github.com/dotnet/roslyn-analyzers) and adapted for Unity 2021.2+ (Microsoft.CodeAnalysis 3.8).
+A Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers) that uses [Unity additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html) instead of `BannedSymbols.txt` — **no `.csproj` edits required**.
+
+> [!NOTE]\
+> Unity additional files require Unity 2021.3 or later.
 
 ## Analyzer Rules
 
@@ -47,25 +50,32 @@ The list of banned symbols contains a duplicate.
 
 ### 1. Add the analyzer DLLs to your Unity project
 
-Place both DLLs under `Assets/` (or a subdirectory) and assign the `RoslynAnalyzer` label to each:
+Place both DLLs under `Assets/` (or a subdirectory):
 
 - `BannedApiAnalyzers.Unity.dll`
 - `BannedApiAnalyzers.Unity.CSharp.dll`
 
-### 2. Create a `BannedSymbols.txt` configuration file
+In the Inspector, configure each DLL:
 
-Add one or more of the following files to your project:
+1. Turn off all of **Select platforms for plugin** toggles
+2. Assign the `RoslynAnalyzer` label
 
-- `BannedSymbols.txt`
-- `BannedSymbols.*.txt` (e.g. `BannedSymbols.Platform.txt`)
+### 2. Create a banned symbols additional file
 
-In Visual Studio, right-click the project in Solution Explorer and choose **Add → New Item**, then select **Text File**. Or create the file manually and reference it in your `.csproj`:
+BannedApiAnalyzers.Unity (a Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers))
+uses [additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html)
+instead of `BannedSymbols.txt` configuration files.
 
-```xml
-<ItemGroup>
-  <AdditionalFiles Include="BannedSymbols.txt" />
-</ItemGroup>
-```
+Create one or more files named according to the pattern `<Filename>.BannedApiAnalyzers.Unity.additionalfile`
+(the `<Filename>` part must not contain a period) and place them anywhere under `Assets/`:
+
+- `BannedSymbols.BannedApiAnalyzers.Unity.additionalfile`
+- `Platform.BannedApiAnalyzers.Unity.additionalfile` (one file per concern)
+
+Unity automatically discovers `.additionalfile` files in `Assets/` and passes them to the analyzer — no `.csproj` edits required.
+
+For more details on Unity's additional files feature, see
+[Additional files for Roslyn analyzers and source generators](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html).
 
 ### 3. Add entries to the banned symbols file
 
@@ -98,19 +108,19 @@ namespace N
 }
 ```
 
-| Symbol                            | BannedSymbols.txt entry                                            |
-|-----------------------------------|--------------------------------------------------------------------|
-| `class BannedType`                | `T:N.BannedType;Don't use BannedType`                              |
-| `class BannedType<T>`             | `` T:N.BannedType`1;Don't use BannedType<T> ``                     |
-| `BannedType()`                    | `M:N.BannedType.#ctor`                                             |
-| `int BannedMethod()`              | `M:N.BannedType.BannedMethod`                                      |
-| `void BannedMethod(int i)`        | `M:N.BannedType.BannedMethod(System.Int32);Don't use BannedMethod` |
-| `void BannedMethod<T>(T t)`       | `` M:N.BannedType.BannedMethod`1(``0) ``                           |
-| `void BannedMethod<T>(Func<T> f)` | `` M:N.BannedType.BannedMethod`1(System.Func{``0}) ``              |
-| `string BannedField`              | `F:N.BannedType.BannedField`                                       |
-| `string BannedProperty { get; }`  | `P:N.BannedType.BannedProperty`                                    |
-| `event EventHandler BannedEvent`  | `E:N.BannedType.BannedEvent`                                       |
-| `namespace N`                     | `N:N`                                                              |
+| Symbol in Source                      | Sample Entry in *.BannedApiAnalyzers.Unity.additionalfile
+| -----------                           | -----------
+| `class BannedType`                    | `T:N.BannedType;Don't use BannedType`
+| `class BannedType<T>`                 | ``T:N.BannedType`1;Don't use BannedType<T>``
+| `BannedType()`                        | `M:N.BannedType.#ctor`
+| `int BannedMethod()`                  | `M:N.BannedType.BannedMethod`
+| `void BannedMethod(int i)`            | `M:N.BannedType.BannedMethod(System.Int32);Don't use BannedMethod`
+| `void BannedMethod<T>(T t)`           | ```M:N.BannedType.BannedMethod`1(``0)```
+| `void BannedMethod<T>(Func<T> f)`     | ```M:N.BannedType.BannedMethod`1(System.Func{``0})```
+| `string BannedField`                  | `F:N.BannedType.BannedField`
+| `string BannedProperty { get; }`      | `P:N.BannedType.BannedProperty`
+| `event EventHandler BannedEvent;`     | `E:N.BannedType.BannedEvent`
+| `namespace N`                         | `N:N`
 
 ## License
 

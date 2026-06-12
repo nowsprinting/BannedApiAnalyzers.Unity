@@ -1,5 +1,8 @@
 # BannedApiAnalyzers.Unity
 
+[![Build](https://github.com/nowsprinting/BannedApiAnalyzers.Unity/actions/workflows/build.yml/badge.svg)](https://github.com/nowsprinting/BannedApiAnalyzers.Unity/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/BannedApiAnalyzers.Unity)](https://www.nuget.org/packages/BannedApiAnalyzers.Unity)
+
 A Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers) that uses [Unity additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html) instead of `BannedSymbols.txt` — **no `.csproj` edits required**.
 
 > [!NOTE]\

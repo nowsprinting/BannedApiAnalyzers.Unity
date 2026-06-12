@@ -5,13 +5,13 @@
 //
 // The ResourceManager baseName must match the EmbeddedResource logical name (minus the ".resources"
 // suffix).  The Microsoft.NET.Sdk embeds a *.resx in the project directory as
-//   "{AssemblyName}.{FileNameWithoutExtension}.resources"
-// which for this project (assembly name "Microsoft.CodeAnalysis.BannedApiAnalyzers") becomes:
-//   "Microsoft.CodeAnalysis.BannedApiAnalyzers.BannedApiAnalyzerResources.resources"
+//   "{RootNamespace}.{FileNameWithoutExtension}.resources"
+// which for this project (RootNamespace "BannedApiAnalyzers.Unity") becomes:
+//   "BannedApiAnalyzers.Unity.BannedApiAnalyzerResources.resources"
 
 using System.Resources;
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     internal partial class BannedApiAnalyzerResources
     {
@@ -19,7 +19,7 @@ namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
 
         internal static ResourceManager ResourceManager
             => s_resourceManager ??= new ResourceManager(
-                "Microsoft.CodeAnalysis.BannedApiAnalyzers.BannedApiAnalyzerResources",
+                "BannedApiAnalyzers.Unity.BannedApiAnalyzerResources",
                 typeof(BannedApiAnalyzerResources).Assembly);
 
         private static string GetResourceString(string key)

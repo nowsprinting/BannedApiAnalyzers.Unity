@@ -1,16 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Threading.Tasks;
+using BannedApiAnalyzers.Unity;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using Test.Utilities;
 using Xunit;
 
 using VerifyCS = Test.Utilities.CSharpCodeFixVerifier<
-    Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers.CSharpSymbolIsBannedAnalyzer,
+    BannedApiAnalyzers.Unity.CSharpSymbolIsBannedAnalyzer,
     Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
 
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers.UnitTests
+namespace BannedApiAnalyzers.Unity.Tests
 {
     // For specification of document comment IDs see https://learn.microsoft.com/dotnet/csharp/language-reference/language-specification/documentation-comments#processing-the-documentation-file
 

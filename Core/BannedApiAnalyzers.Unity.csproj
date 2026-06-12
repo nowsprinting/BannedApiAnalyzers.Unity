@@ -2,19 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!--
-      PackageId is used by Restore. If we set it to Microsoft.CodeAnalysis.BannedApiAnalyzer,
-      Restore would conclude that there is a cyclic dependency between us and the Microsoft.CodeAnalysis.BannedApiAnalyzer package.
-    -->
-    <PackageId>*$(MSBuildProjectFile)*</PackageId>
+    <AssemblyName>BannedApiAnalyzers.Unity</AssemblyName>
+    <PackageId>BannedApiAnalyzers.Unity</PackageId>
+    <Version>1.0.0</Version>
     <MicrosoftCodeAnalysisVersion>$(MicrosoftCodeAnalysisVersionForBannedApiAnalyzers)</MicrosoftCodeAnalysisVersion>
   </PropertyGroup>
   <ItemGroup>
     <!-- RoslynDiagnosticIds.cs was originally from ..\..\Roslyn.Diagnostics.Analyzers\Core\ (outside repo).
          It is now vendored directly in Core/ and picked up by the SDK's default Compile glob. -->
-    <InternalsVisibleTo Include="Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers" />
+    <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.CSharp" />
     <!-- VisualBasic project is excluded from this Unity-targeted standalone build. -->
-    <InternalsVisibleTo Include="Microsoft.CodeAnalysis.BannedApiAnalyzers.UnitTests" />
+    <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.Tests" />
   </ItemGroup>
   <!-- Original: ..\..\Utilities\Compiler\Analyzer.Utilities.projitems (sibling in roslyn-analyzers monorepo).
        Vendored under Utilities/Compiler/ for standalone build. -->

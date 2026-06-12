@@ -6,11 +6,13 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using Analyzer.Utilities.Extensions;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 
 using DiagnosticIds = Roslyn.Diagnostics.Analyzers.RoslynDiagnosticIds;
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     using static BannedApiAnalyzerResources;
 
@@ -24,7 +26,7 @@ namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
             description: CreateLocalizableResourceString(nameof(SymbolIsBannedDescription)),
-            helpLinkUri: "https://github.com/dotnet/roslyn-analyzers/blob/main/src/Microsoft.CodeAnalysis.BannedApiAnalyzers/BannedApiAnalyzers.Help.md",
+            helpLinkUri: "https://github.com/nowsprinting/BannedApiAnalyzers.Unity/blob/master/BannedApiAnalyzers.Unity.Help.md",
             customTags: WellKnownDiagnosticTagsExtensions.Telemetry);
 
         public static readonly DiagnosticDescriptor DuplicateBannedSymbolRule = new(
@@ -35,7 +37,7 @@ namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
             description: CreateLocalizableResourceString(nameof(DuplicateBannedSymbolDescription)),
-            helpLinkUri: "https://github.com/dotnet/roslyn-analyzers/blob/main/src/Microsoft.CodeAnalysis.BannedApiAnalyzers/BannedApiAnalyzers.Help.md",
+            helpLinkUri: "https://github.com/nowsprinting/BannedApiAnalyzers.Unity/blob/master/BannedApiAnalyzers.Unity.Help.md",
             customTags: WellKnownDiagnosticTagsExtensions.CompilationEndAndTelemetry);
     }
 
@@ -66,7 +68,7 @@ namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
                 let textWithoutComment = commentIndex == -1 ? text : text[..commentIndex]
                 where !string.IsNullOrWhiteSpace(textWithoutComment)
                 let trimmedTextWithoutComment = textWithoutComment.TrimEnd()
-                let span = commentIndex == -1 ? line.Span : new Text.TextSpan(line.Span.Start, trimmedTextWithoutComment.Length)
+                let span = commentIndex == -1 ? line.Span : new TextSpan(line.Span.Start, trimmedTextWithoutComment.Length)
                 let entry = new BanFileEntry(compilation, trimmedTextWithoutComment, span, sourceText, additionalFile.Path)
                 where !string.IsNullOrWhiteSpace(entry.DeclarationId)
                 select entry;

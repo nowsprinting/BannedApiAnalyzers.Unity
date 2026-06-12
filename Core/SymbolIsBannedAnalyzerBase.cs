@@ -7,11 +7,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using Analyzer.Utilities.Extensions;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Operations;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     public abstract class SymbolIsBannedAnalyzerBase<TSyntaxKind> : DiagnosticAnalyzer
         where TSyntaxKind : struct

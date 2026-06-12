@@ -1,4 +1,4 @@
-# How to use Microsoft.CodeAnalysis.BannedApiAnalyzers
+# How to use BannedApiAnalyzers.Unity
 
 The following file or files have to be added to any project referencing this package to enable analysis:
 

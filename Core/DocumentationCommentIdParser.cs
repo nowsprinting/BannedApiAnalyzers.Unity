@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     /// <summary>
     /// Stripped down port of the code in roslyn.  Responsible only for determining the <see cref="ISymbol.Name"/> and

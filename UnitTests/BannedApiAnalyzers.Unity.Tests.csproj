@@ -20,7 +20,7 @@
   <ItemGroup>
     <!-- Test.Utilities and VisualBasic projects are NOT referenced: Test.Utilities is vendored
          minimally under TestUtilities/, and VisualBasic is excluded from this Unity-targeted build. -->
-    <ProjectReference Include="..\Core\Microsoft.CodeAnalysis.BannedApiAnalyzers.csproj" />
-    <ProjectReference Include="..\CSharp\Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers.csproj" />
+    <ProjectReference Include="..\Core\BannedApiAnalyzers.Unity.csproj" />
+    <ProjectReference Include="..\CSharp\BannedApiAnalyzers.Unity.CSharp.csproj" />
   </ItemGroup>
 </Project>

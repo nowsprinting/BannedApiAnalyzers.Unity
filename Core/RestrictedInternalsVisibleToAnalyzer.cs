@@ -7,12 +7,13 @@ using System.Diagnostics;
 using System.Linq;
 using Analyzer.Utilities;
 using Analyzer.Utilities.Extensions;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Operations;
 
 using DiagnosticIds = Roslyn.Diagnostics.Analyzers.RoslynDiagnosticIds;
 
-namespace Microsoft.CodeAnalysis.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     using static BannedApiAnalyzerResources;
 

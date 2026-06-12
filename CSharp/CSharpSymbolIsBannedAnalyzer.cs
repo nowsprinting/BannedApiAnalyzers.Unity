@@ -1,13 +1,15 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.BannedApiAnalyzers;
+using BannedApiAnalyzers.Unity;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Microsoft.CodeAnalysis.CSharp.BannedApiAnalyzers
+namespace BannedApiAnalyzers.Unity
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public sealed class CSharpSymbolIsBannedAnalyzer : SymbolIsBannedAnalyzer<SyntaxKind>

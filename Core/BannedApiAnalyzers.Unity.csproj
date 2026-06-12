@@ -17,6 +17,13 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <Authors>Koji Hasegawa</Authors>
+    <Copyright>(c) 2026 Koji Hasegawa</Copyright>
+    <Description>Unity-focused fork of Microsoft.CodeAnalysis.BannedApiAnalyzers that uses Unity additional files instead of BannedSymbols.txt — no .csproj edits required.</Description>
+    <PackageProjectUrl>https://github.com/nowsprinting/BannedApiAnalyzers.Unity</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nowsprinting/BannedApiAnalyzers.Unity.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Roslyn Analyzer Unity BannedApi CodeAnalysis RoslynAnalyzer RS0030</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <!-- RoslynDiagnosticIds.cs was originally from ..\..\Roslyn.Diagnostics.Analyzers\Core\ (outside repo).

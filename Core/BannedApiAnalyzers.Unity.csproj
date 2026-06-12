@@ -15,6 +15,8 @@
          BuildOutputTargetFolder would add a netstandard2.0/ subfolder, so we use IncludeBuildOutput=false
          and include both DLLs manually via None items below. -->
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- RoslynDiagnosticIds.cs was originally from ..\..\Roslyn.Diagnostics.Analyzers\Core\ (outside repo).
@@ -22,6 +24,11 @@
     <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.CSharp" />
     <!-- VisualBasic project is excluded from this Unity-targeted standalone build. -->
     <InternalsVisibleTo Include="BannedApiAnalyzers.Unity.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="/" />
+    <None Include="..\License.txt" Pack="true" PackagePath="/" />
+    <None Include="..\BannedApiAnalyzers.Help.md" Pack="true" PackagePath="/" />
   </ItemGroup>
   <ItemGroup>
     <!-- Both analyzer DLLs go directly under analyzers/dotnet/cs/ (no TFM subfolder) -->

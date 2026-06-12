@@ -6,6 +6,9 @@
 A Unity-focused fork of [Microsoft.CodeAnalysis.BannedApiAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.BannedApiAnalyzers) that uses [Unity additional files](https://docs.unity3d.com/Manual/roslyn-analyzers-additional-files.html) instead of `BannedSymbols.txt` — **no `.csproj` edits required**.
 
 > [!NOTE]\
+> This package is based on [dotnet/roslyn-analyzers](https://github.com/dotnet/roslyn-analyzers) v3.11.0.
+
+> [!NOTE]\
 > Unity additional files require Unity 2021.3 or later.
 
 ## Analyzer Rules

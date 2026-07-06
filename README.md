@@ -1,4 +1,4 @@
-# BannedApiAnalyzers.Unity
+# BannedApiAnalyzers for Unity
 
 [![Build](https://github.com/nowsprinting/BannedApiAnalyzers.Unity/actions/workflows/build.yml/badge.svg)](https://github.com/nowsprinting/BannedApiAnalyzers.Unity/actions/workflows/build.yml)
 [![NuGet](https://img.shields.io/nuget/v/BannedApiAnalyzers.Unity)](https://www.nuget.org/packages/BannedApiAnalyzers.Unity)
@@ -56,14 +56,14 @@ The list of banned symbols contains a duplicate.
 
 ### 1. Install the analyzer package
 
-Install BannedApiAnalyzers.Unity from a package registry using either NuGetForUnity or UnityNuGet.
+Install BannedApiAnalyzers.Unity from a package registry using either [NuGetForUnity]([NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity)) or [UnityNuGet]([UnityNuGet](https://github.com/bdovaz/UnityNuGet)).
 
-#### [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity)
+#### NuGetForUnity
 
 1. Open the NuGetForUnity window via **NuGet > Manage NuGet Packages**
 2. Search "BannedApiAnalyzers.Unity" and click **Install**
 
-#### [OpenUPM](https://openupm.com/) (UnityNuGet)
+#### UnityNuGet (hosted on [OpenUPM](https://openupm.com/))
 
 1. Install the package:
 
@@ -72,6 +72,9 @@ Install BannedApiAnalyzers.Unity from a package registry using either NuGetForUn
    ```
 
 2. Open the `.asmdef` of each assembly you want the analyzer to apply to, and add `BannedApiAnalyzers.Unity_Unity` to its **Assembly Definition References**.
+
+> [!TIP]\
+> Analyzers installed via NuGetForUnity apply to all assemblies in the project (including those in the PackageCache), while analyzers installed via UnityNuGet apply only to the referenced assembly and any assemblies that depend on it.
 
 ### 2. Create a banned symbols additional file
 
@@ -88,15 +91,17 @@ For more details on Unity's additional files feature, see
 
 ### 3. Add entries to the banned symbols file
 
-Each entry uses the [Documentation Comment ID](https://github.com/dotnet/csharpstandard/blob/standard-v6/standard/documentation-comments.md#d42-id-string-format) format, with an optional description after `;`. Lines starting with `//` are treated as comments.
+To add a symbol to the banned list, just add an entry in the format below to one of the additional files (Description Text will be displayed as description in diagnostics, which is optional):
 
 ```txt
-{Documentation Comment ID}[;Description Text]
+{Documentation Comment ID string for the symbol}[;Description Text]
 ```
 
-#### Examples
+Comments can be indicated with `//`, in the same way that they work in C#.
 
-Given the following source:
+For details on ID string format, please refer to ["ID string format"](https://github.com/dotnet/csharpstandard/blob/standard-v6/standard/documentation-comments.md#d42-id-string-format).
+
+Examples of banned symbols entries for symbols declared in the source below:
 
 ```csharp
 namespace N
@@ -113,7 +118,7 @@ namespace N
         public event EventHandler BannedEvent;
     }
 
-    class BannedType<T> { }
+    class BannedType<T> {}
 }
 ```
 

@@ -42,7 +42,7 @@ namespace N
         public event EventHandler BannedEvent;
     }
 
-    class BannedType<T> { }
+    class BannedType<T> {}
 }
 ```
 

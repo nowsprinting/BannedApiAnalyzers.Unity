@@ -35,7 +35,7 @@
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="/" />
     <None Include="..\License.txt" Pack="true" PackagePath="/" />
-    <None Include="..\BannedApiAnalyzers.Help.md" Pack="true" PackagePath="/" />
+    <None Include="..\BannedApiAnalyzers.Unity.Help.md" Pack="true" PackagePath="/" />
   </ItemGroup>
   <ItemGroup>
     <!-- Both analyzer DLLs go directly under analyzers/dotnet/cs/ (no TFM subfolder) -->

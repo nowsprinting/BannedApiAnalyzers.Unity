@@ -56,7 +56,7 @@ The list of banned symbols contains a duplicate.
 
 ### 1. Install the analyzer package
 
-Install BannedApiAnalyzers.Unity from a package registry using either [NuGetForUnity]([NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity)) or [UnityNuGet]([UnityNuGet](https://github.com/bdovaz/UnityNuGet)).
+Install BannedApiAnalyzers.Unity from a package registry using either [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity) or [UnityNuGet](https://github.com/bdovaz/UnityNuGet).
 
 #### NuGetForUnity
 

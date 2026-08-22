@@ -59,3 +59,7 @@ namespace N
 | `string BannedProperty { get; }`      | `P:N.BannedType.BannedProperty`
 | `event EventHandler BannedEvent;`     | `E:N.BannedType.BannedEvent`
 | `namespace N`                         | `N:N`
+
+> [!TIP]\
+> An entry without a parameter list (e.g., `M:N.BannedType.BannedMethod`) only matches a member that truly has zero parameters.
+> For any overloaded method, write the full parameter list — otherwise the entry silently matches nothing.

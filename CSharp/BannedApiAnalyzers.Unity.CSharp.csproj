@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>BannedApiAnalyzers.Unity.CSharp</AssemblyName>
-    <PackageId>BannedApiAnalyzers.Unity.CSharp</PackageId>
-    <Version>1.0.2</Version>
     <MicrosoftCodeAnalysisVersion>$(MicrosoftCodeAnalysisVersionForBannedApiAnalyzers)</MicrosoftCodeAnalysisVersion>
     <!-- Bundled into BannedApiAnalyzers.Unity package; not packed standalone -->
     <IsPackable>false</IsPackable>

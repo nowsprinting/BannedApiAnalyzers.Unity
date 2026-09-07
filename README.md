@@ -68,7 +68,7 @@ Install BannedApiAnalyzers.Unity from a package registry using either [NuGetForU
 1. Install the package:
 
    ```bash
-   openupm add org.nuget.BannedApiAnalyzers.Unity
+   openupm add org.nuget.bannedapianalyzers.unity
    ```
 
 2. Open the `.asmdef` of each assembly you want the analyzer to apply to, and add `BannedApiAnalyzers.Unity_Unity` to its **Assembly Definition References**.
